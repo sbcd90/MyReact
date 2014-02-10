@@ -1,0 +1,51 @@
+<html>
+<head>
+	<script type="text/javascript" src="MyReact.js"></script>
+</head>
+<body id="content">
+	<div id="content1"></div>
+	<div id="content2">
+		<div id="content3"></div>
+	</div>
+	<p id="content4"></p>
+	<script type="text/javascript">
+		var hello2 = MyReact.createClass("hello2",{
+			render : function(){
+				return "<button key='hellotest1' onclick='{click}'>Change</button>";
+			},
+			click : {
+				key : 'hellotest1',
+				handler : function(){
+					var newData = [
+									{"name" : "Ramprasad", "title" : "B"},
+									{"name" : "Hello", "title" : "World"}
+				   			  	  ];
+					MyReact.components["hello1"].setState(newData,"content");
+				}
+			}
+		});
+		var hello1 = MyReact.createClass("hello1",{
+			render : function(){
+				return "<div key='check1'><p key='hellotest'>{properties[0].name}</p><custom:hello2 data='data'></custom:hello2></div>";
+			}
+		});
+		var hello = MyReact.createClass("hello",{
+			componentWillMount : function(){
+				var newData = [
+								{"name" : "Testing", "title" : "check"},
+								{"name" : "Hello", "title" : "World"}
+				   			  ];
+				MyReact.components["hello"].setState(newData,"content");
+			},
+			render : function(){
+				return "<div key='check'><p key='taste'>{properties[0].name}</p><custom:hello1 data='data'></custom:hello1></div>";
+			}
+		});
+		var data = [
+					{"name" : "Subhobrata", "title" : "Dey"},
+					{"name" : "Hello", "title" : "World"}
+				   ];
+		MyReact.renderComponent("hello","content1",data);
+	</script>
+</body>
+</html>	
